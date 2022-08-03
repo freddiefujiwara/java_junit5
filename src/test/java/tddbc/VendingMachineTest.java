@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Arrays;
+
 public class VendingMachineTest {
 
     @Test
@@ -46,11 +48,14 @@ public class VendingMachineTest {
     public void _test_input_exception() throws Exception {
         // Setup
         VendingMachine vm = new VendingMachine();
+        Integer arr[] = { -1, 0, 49, 2000 };
+        for (int coin : Arrays.asList(arr)) {
 
-        Exception ex = assertThrows(NumberFormatException.class, () -> {
-            vm.input(0);
-        });
-        assertTrue(ex.getMessage().contains("coin should be 10,50,100,500 or 1000"));
+            Exception ex = assertThrows(NumberFormatException.class, () -> {
+                vm.input(coin);
+            });
+            assertTrue(ex.getMessage().contains("coin should be 10,50,100,500 or 1000"));
+        }
 
     }
 
